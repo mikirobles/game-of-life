@@ -1,19 +1,9 @@
 import React from "react";
 import Cell from "./Cell";
-import styled from "styled-components";
-
-const BoardWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 10px;
-  .col {
-    margin-right: 2px;
-  }
-`;
 
 function Board({ cells, onClickCell }) {
   return (
-    <BoardWrapper rows={cells.length}>
+    <div className="board">
       {cells.map((_, rowIndex) => (
         <div className="col" key={`col-${rowIndex}`}>
           {cells[rowIndex].map((cell, columnIndex) => (
@@ -25,7 +15,7 @@ function Board({ cells, onClickCell }) {
           ))}
         </div>
       ))}
-    </BoardWrapper>
+    </div>
   );
 }
 

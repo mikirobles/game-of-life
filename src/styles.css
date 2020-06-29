@@ -1,3 +1,11 @@
+:root {
+  --primary: #3fb4eb;
+  --primary-shadow: #2d8fbd;
+
+  --secondary: #f0f0f0;
+  --secondary-shadow: #dbdbdb;
+}
+
 .App {
   font-family: sans-serif;
   text-align: center;
@@ -6,21 +14,49 @@
   align-items: center;
 }
 
+button {
+  font-size: 1rem;
+  border: 1px solid var(--secondary-shadow);
+  background: var(--secondary);
+  border-radius: 3px;
+}
+
+button.primary {
+  border: 1px solid var(--primary-shadow);
+  background: var(--primary);
+  color: white;
+}
+
 .btn-row > *:not(:last-child) {
   margin-right: 10px;
+}
+
+.board {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.col {
+  margin-right: 2px;
 }
 
 .cell {
   width: 8px;
   height: 8px;
   margin-bottom: 2px;
-  background-color: #f0f0f0;
+  background-color: var(--secondary);
   transition: 0.1s ease all;
-  border: 1px solid #dbdbdb;
+  border: 1px solid var(--secondary-shadow);
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .cell.alive {
-  border-color: #2d8fbd;
-  background-color: #3fb4eb;
+  border-color: var(--primary-shadow);
+  background-color: var(--primary);
+}
+
+.settings {
+  margin-top: 12px;
 }
