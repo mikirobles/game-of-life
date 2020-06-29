@@ -13,7 +13,7 @@ export default function App() {
   const tickInterval = useRef();
   const [width, setWidth] = useState(30);
   const [height, setHeight] = useState(15);
-  const [cells, setCells] = useState(getInitialState(width, height, true));
+  const [cells, setCells] = useState([]);
   const [status, setStatus] = useState(statuses.paused);
   const [speed, setSpeed] = useState(50);
 
@@ -23,6 +23,10 @@ export default function App() {
     );
     setCells(newCells);
   }, [cells]);
+
+  useEffect(() => {
+    setCells(getInitialState(width, height, true))
+  }, [width, height])
 
   useEffect(() => {
     if (status === statuses.active) {
