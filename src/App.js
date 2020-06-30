@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./styles.css";
 import Board from "./Board";
 import Input from "./Input";
-import { shouldLive, cloneCells, getInitialState } from './helpers';
+import { shouldLive, cloneCells, getInitialState } from "./helpers";
 
 const statuses = {
   paused: "paused",
@@ -10,7 +10,6 @@ const statuses = {
 };
 
 export default function App() {
-  const tickInterval = useRef();
   const [width, setWidth] = useState(30);
   const [height, setHeight] = useState(15);
   const [cells, setCells] = useState([]);
@@ -25,15 +24,18 @@ export default function App() {
   }, [cells]);
 
   useEffect(() => {
-    setCells(getInitialState(width, height, true))
-  }, [width, height])
+    setCells(getInitialState(width, height, true));
+  }, [width, height]);
 
   useEffect(() => {
+    let tickInterval;
     if (status === statuses.active) {
-      tickInterval.current = setTimeout(onTick, speed);
+      tickInterval = setTimeout(onTick, speed);
     }
     return () => {
-      clearTimeout(tickInterval.current);
+      if (tickInterval) {
+        clearTimeout(tickInterval);
+      }
     };
   }, [status, onTick, speed]);
 
@@ -60,12 +62,19 @@ export default function App() {
       {/* Controls */}
       {status === statuses.paused ? (
         <div className="btn-row">
-          <button className="primary" onClick={() => setStatus(statuses.active)}>> play</button>
+          <button
+            className="primary"
+            onClick={() => setStatus(statuses.active)}
+          >
+            > play
+          </button>
           <button onClick={clear}>clear</button>
           <button onClick={randomizeState}>randomize</button>
         </div>
       ) : (
-        <button className="primary" onClick={() => setStatus(statuses.paused)}>pause</button>
+        <button className="primary" onClick={() => setStatus(statuses.paused)}>
+          pause
+        </button>
       )}
 
       {/* Settings */}
