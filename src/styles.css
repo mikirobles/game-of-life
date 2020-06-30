@@ -37,26 +37,6 @@ button.primary {
   margin-bottom: 10px;
 }
 
-.col {
-  margin-right: 2px;
-}
-
-.cell {
-  width: 8px;
-  height: 8px;
-  margin-bottom: 2px;
-  background-color: var(--secondary);
-  transition: 0.1s ease all;
-  border: 1px solid var(--secondary-shadow);
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.cell.alive {
-  border-color: var(--primary-shadow);
-  background-color: var(--primary);
-}
-
 .settings {
   margin-top: 12px;
 }
