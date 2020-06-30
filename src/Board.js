@@ -33,6 +33,7 @@ function Board({ cells, onClickCell }) {
       );
     }
     return [];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [width, height]);
 
   useEffect(() => {
