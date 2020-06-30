@@ -83,6 +83,14 @@ export default function App() {
         <Input name="Width" value={width} onChange={setWidth} />
         <Input name="Height" value={height} onChange={setHeight} />
       </div>
+
+      <a
+        href="https://github.com/mikirobles/game-of-life"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view source
+      </a>
     </div>
   );
 }
