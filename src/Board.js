@@ -4,12 +4,13 @@ const cellSize = 10;
 
 function drawCell(row, col, alive, ctx) {
   ctx.fillStyle = alive ? "#3fb4eb" : "#f0f0f0";
-  return ctx.fillRect(
+  ctx.fillRect(
     row * cellSize + 1,
     col * cellSize + 1,
     cellSize - 2,
     cellSize - 2
   );
+  return ctx;
 }
 
 function Board({ cells, onClickCell }) {
@@ -44,9 +45,21 @@ function Board({ cells, onClickCell }) {
     );
   }, [ctxCells, cells]);
 
+  const onCanvasClick = event => {
+    const rect = canvasRef.current.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const col = Math.floor(x / cellSize);
+    const row = Math.floor(y / cellSize);
+
+    onClickCell(col, row);
+  };
+
   return (
     <div className="board">
       <canvas
+        onClick={onCanvasClick}
         width={cells.length * cellSize}
         height={cells[0] ? cells[0].length * cellSize : 0}
         ref={canvasRef}
